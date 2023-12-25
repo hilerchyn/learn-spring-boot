@@ -18,30 +18,30 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/posts")
 @RequiredArgsConstructor
 public class PostController{
-  private final PostService postService = new PostService();
+    private final PostService postService = new PostService();
 
-  @GetMapping
-  public String postPage(Model model) {
-    model.addAttribute("posts", postService.findAllPosts());
+    @GetMapping
+    public String postPage(Model model) {
+        model.addAttribute("posts", postService.findAllPosts());
 
-    return "post";
-  }
-
-  @GetMapping("/add")
-  public String addPostPage(Model model) {
-    model.addAttribute("post", new Post());
-
-    return "addPost";
-  }
-
-  @PostMapping
-  public String addPost(@ModelAttribute("post") @Valid Post post, Errors errors) {
-    if(errors.hasErrors()) {
-      return "addPost";
+        return "post";
     }
 
-    postService.addPost(post);
+    @GetMapping("/add")
+    public String addPostPage(Model model) {
+        model.addAttribute("post", new Post());
 
-    return "redirect:/posts";
-  }
+        return "addPost";
+    }
+
+    @PostMapping
+    public String addPost(@ModelAttribute("post") @Valid Post post, Errors errors) {
+        if(errors.hasErrors()) {
+            return "addPost";
+        }
+
+        postService.addPost(post);
+
+        return "redirect:/posts";
+    }
 }

@@ -12,9 +12,9 @@ import jakarta.validation.Payload;
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = BlogPostTitleValidator.class)
 public @interface BlogPostTitleAlreadyExists {
-  String message() default "Title Already Exists";
+    String message() default "Title Already Exists";
 
-  Class<?>[] groups() default {};
+    Class<?>[] groups() default {};
 
-  Class<? extends Payload>[] payload() default {};
+    Class<? extends Payload>[] payload() default {};
 }

@@ -9,13 +9,13 @@ import com.apress.demo.springblog.domain.Post;
 
 @Repository
 public class PostRepository {
-  private final Set<Post> posts = new CopyOnWriteArraySet<>();
+    private final Set<Post> posts = new CopyOnWriteArraySet<>();
 
-  public void addPost(Post post) {
-    posts.add(post);
-  }
+    public void addPost(Post post) {
+        posts.add(post);
+    }
 
-  public Set<Post> findAllPosts() {
-    return posts;
-  }
+    public Set<Post> findAllPosts() {
+        return posts;
+    }
 }

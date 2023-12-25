@@ -13,19 +13,19 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class PostService {
 
-  private final PostRepository postRepository = new PostRepository();
+    private final PostRepository postRepository = new PostRepository();
 
-  public void addPost(Post post) {
-    postRepository.addPost(post);
-  }
+    public void addPost(Post post) {
+        postRepository.addPost(post);
+    }
 
-  public Set<Post> findAllPosts() {
-    return postRepository.findAllPosts();
-  }
+    public Set<Post> findAllPosts() {
+        return postRepository.findAllPosts();
+    }
 
-  public boolean postExistsWithTitle(String title) {
-    // FIXME: 校验逻辑失效，因为findAllPosts()方法取得数据为空
-    return postRepository.findAllPosts().stream()
-      .anyMatch(post -> post.getTitle().equals(title));
-  }
+    public boolean postExistsWithTitle(String title) {
+        // FIXME: 校验逻辑失效，因为findAllPosts()方法取得数据为空
+        return postRepository.findAllPosts().stream()
+            .anyMatch(post -> post.getTitle().equals(title));
+    }
 }
