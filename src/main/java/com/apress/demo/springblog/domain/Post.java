@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 
 import java.util.List;
 
+import com.apress.demo.springblog.validation.BlogPostTitleAlreadyExists;
+
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -17,6 +19,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@BlogPostTitleAlreadyExists
 public class Post {
   private Integer id;
 

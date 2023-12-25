@@ -22,4 +22,10 @@ public class PostService {
   public Set<Post> findAllPosts() {
     return postRepository.findAllPosts();
   }
+
+  public boolean postExistsWithTitle(String title) {
+    // FIXME: 校验逻辑失效，因为findAllPosts()方法取得数据为空
+    return postRepository.findAllPosts().stream()
+      .anyMatch(post -> post.getTitle().equals(title));
+  }
 }
