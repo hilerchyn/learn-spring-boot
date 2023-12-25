@@ -1,0 +1,25 @@
+package com.apress.demo.springblog.service;
+
+import java.util.Set;
+
+import org.springframework.stereotype.Service;
+
+import com.apress.demo.springblog.domain.Post;
+import com.apress.demo.springblog.repository.PostRepository;
+
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class PostService {
+
+  private final PostRepository postRepository = new PostRepository();
+
+  public void addPost(Post post) {
+    postRepository.addPost(post);
+  }
+
+  public Set<Post> findAllPosts() {
+    return postRepository.findAllPosts();
+  }
+}
