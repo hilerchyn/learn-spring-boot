@@ -6,14 +6,18 @@ import java.nio.file.Files;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.apress.demo.springblog.domain.Post;
+import com.apress.demo.springblog.exception.SpringBlogException;
 import com.apress.demo.springblog.service.PostService;
 
 import jakarta.validation.Valid;
@@ -52,7 +56,7 @@ public class PostController{
 
     @GetMapping("/fileUpload")
     public String fileUpload(Model model) {
-        return "fileUpload";
+        return "fileUploadx";
     }
 
     @PostMapping("/uploadMyFile")
@@ -70,5 +74,20 @@ public class PostController{
         }
 
         return "redirect:/posts/fileUpload";
+    }
+    
+    @GetMapping("/{id}")
+    public String onePostPage(Model model, @PathVariable Integer id) {
+        model.addAttribute("posts", postService.findOnePost(id));
+
+        return "onePost";
+    }
+
+    @ExceptionHandler(SpringBlogException.class)
+    public ModelAndView handleSpringBlogException(SpringBlogException ex) {
+        System.out.println(">>>>>>>>>cat error");
+        ModelAndView model = new ModelAndView("error");
+        model.addObject("exception", ex);
+        return model;
     }
 }

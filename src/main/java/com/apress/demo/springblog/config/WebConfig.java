@@ -8,16 +8,19 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
 import lombok.RequiredArgsConstructor;
 
+import java.util.Properties;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-//@EnableWebMvc
+@EnableWebMvc
 @RequiredArgsConstructor
 public class WebConfig implements WebMvcConfigurer {
     @Override
@@ -47,10 +50,11 @@ public class WebConfig implements WebMvcConfigurer {
         // Add additional formatters here
     }
 
-    @Bean
-    public LocaleResolver localeResolver() {
-        return new CookieLocaleResolver();
-    }
+    // WARNING: @EnableWebMvc 启用该标记则此函数不能定义
+    //@Bean
+    //public LocaleResolver localeResolver() {
+    //    return new CookieLocaleResolver();
+    //}
 
     @Bean
     public LocaleChangeInterceptor localeInterceptor(){
@@ -58,5 +62,18 @@ public class WebConfig implements WebMvcConfigurer {
         localeInterceptor.setParamName("lang");
 
         return localeInterceptor;
+    }
+
+    @Bean(name="simpleMappingExceptionResolver")
+    public SimpleMappingExceptionResolver simpleMappingExceptionResolver() {
+        Properties mappings = new Properties();
+        mappings.setProperty("SpringBlogException", "genericError");
+        mappings.setProperty("RuntimeException", "error");
+
+        SimpleMappingExceptionResolver exceptionResolver = new SimpleMappingExceptionResolver();
+        exceptionResolver.setExceptionMappings(mappings);
+        exceptionResolver.setDefaultErrorView("error");
+
+        return exceptionResolver;
     }
 }
