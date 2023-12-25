@@ -9,15 +9,18 @@
       <div>
         <label for="title">Title:</label>
         <input id="title" th:field="${post.title}" type="text" />
+        <div style="color:red" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Invalid Title</div>
         <hr/>
       </div>
       <div>
         <label for="description">Description:</label>
         <input id="description" th:field="*{description}" type="text" />
+        <div style="color:red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Invalid Description</div>
       </div>
       <div>
         <label for="body">Body:</label>
         <textarea id="body" th:field="${post.body}"></textarea>
+        <div style="color:red" th:if="${#fields.hasErrors('body')}" th:errors="*{body}">Invalid Body</div>
       </div>
       <div>
         <input type="submit" />
