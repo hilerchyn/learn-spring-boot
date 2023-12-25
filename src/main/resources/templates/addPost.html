@@ -5,6 +5,7 @@
     </head>
     <body>
         <h1>Welcome to Spring Blog</h1>
+        <h2><a href="/posts" target="_self">Home</a></h2>
         <form th:object="${post}" th:action="@{/posts}" method="post">
             <div>
                 <label for="title">Title:</label>

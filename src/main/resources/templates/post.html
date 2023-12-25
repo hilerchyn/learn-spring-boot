@@ -6,6 +6,7 @@
     <body>
         <h1>Welcome to Spring Blog</h1>
         <h2><a href="/posts/add" target="_self">Write new Blog Post</a></h2>
+        <h2><a href="/posts/fileUpload" target="_self">File Upload</a></h2>
         <div th:each="post : ${posts}">
             <h3 th:text="${post.title}"></h3>
             <hr/>

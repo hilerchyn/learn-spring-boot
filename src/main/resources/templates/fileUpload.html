@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns="https://www.w3.org/1999/xhtml" lang="en">
+    <head>
+        <title>Spring Blog</title>
+    </head>
+    <body>
+        <h1>Upload File</h1>
+        <h2><a href="/posts" target="_self">Home</a></h2>
+        <form action="/posts/uploadMyFile" th:action="@{/posts/uploadMyFile}" method="post" enctype="multipart/form-data">
+            <div>
+                <input name="myFile" type="file" />
+            </div>
+            <div>
+                <input type="submit" />
+            </div>
+        </form>
+    </body>
+</html>
