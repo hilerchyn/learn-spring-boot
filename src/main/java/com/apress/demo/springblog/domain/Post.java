@@ -1,6 +1,6 @@
 package com.apress.demo.springblog.domain;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import java.util.List;
 
@@ -37,7 +37,7 @@ public class Post {
 
     private String        slug;
     private PostStatus    postStatus;
-    private LocalDateTime createdOn;
-    private LocalDateTime updatedOn;
+    private LocalDate     createdOn;
+    private LocalDate     updatedOn;
     private List<Comment> comments;
 }

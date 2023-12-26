@@ -1,5 +1,6 @@
 package com.apress.demo.springblog.service;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 import org.springframework.stereotype.Service;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.apress.demo.springblog.domain.Post;
 import com.apress.demo.springblog.exception.SpringBlogException;
 import com.apress.demo.springblog.repository.PostRepository;
+import com.apress.demo.springblog.repository.JdbcPostRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -14,9 +16,12 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class PostService {
 
-    private final PostRepository postRepository = new PostRepository();
+    //private final PostRepository postRepository;
+    private final JdbcPostRepository postRepository;
 
     public void addPost(Post post) {
+        post.setCreatedOn(LocalDate.now());
+        post.setUpdatedOn(LocalDate.now());
         postRepository.addPost(post);
     }
 

@@ -1,6 +1,6 @@
 package com.apress.demo.springblog.domain;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -27,6 +27,6 @@ public class Comment{
     @Size(min = 3, max = 100, message = "Body must be minimum 3 characters, and maximum 100 characters long")
     private String body;
 
-    private LocalDateTime createdOn;
-    private LocalDateTime updatedOn;
+    private LocalDate createdOn;
+    private LocalDate updatedOn;
 }
