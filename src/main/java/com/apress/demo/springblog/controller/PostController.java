@@ -27,7 +27,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/posts")
 @RequiredArgsConstructor
 public class PostController{
-    private final PostService postService = new PostService();
+    private final PostService postService;
 
     @GetMapping
     public String postPage(Model model) {
